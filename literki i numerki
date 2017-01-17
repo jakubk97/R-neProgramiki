@@ -1,0 +1,80 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package javaapplication18;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+/**
+ *
+ * @author Kuba
+ */
+public class JavaApplication18 {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) throws IOException {
+        String napis = "Ala ma kota1";
+        String napis2 = "ala ma kota9";
+        
+        System.out.println(napis.charAt(0));
+        System.out.println(napis.compareTo(napis2));
+        System.out.println(napis.indexOf('k'));
+        System.out.println(napis.length());
+        System.out.println(napis.replace('k', 'K'));
+        System.out.println(napis.substring(4));
+        System.out.println(napis.substring(4, 8));
+        System.out.println(napis);
+        
+        String nap = napis.substring(4, 8);
+        System.out.println(napis);
+        System.out.println(nap);
+        
+        char znak;
+        znak = napis.charAt(0);
+        System.out.println("-------------");
+        System.out.println(znak);
+        int liczbaZnak = znak;
+        System.out.println(liczbaZnak);
+        
+        liczbaZnak = 70;
+        znak = (char) liczbaZnak;
+        System.out.println(znak);
+        
+        int i;
+        for (i = 0; i < napis.length(); i++) {
+            liczbaZnak = napis.charAt(i);
+            
+            System.out.print(napis.charAt(i));
+            System.out.print(" -> ");
+            System.out.println(liczbaZnak);
+        }
+        
+        for (i = 0; i < 256; i++) {
+            znak = (char) i;
+            
+            System.out.print(i);
+            System.out.print(" -> ");
+            System.out.println(znak);
+        }
+        
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String zKlawierki;
+        zKlawierki = br.readLine();
+        System.out.println(zKlawierki);
+        
+        for (i = 0; i < zKlawierki.length(); i++) {
+            liczbaZnak = zKlawierki.charAt(i);
+            
+            System.out.print(zKlawierki.charAt(i));
+            System.out.print(" -> ");
+            System.out.println(liczbaZnak);
+        }
+    }
+    
+}
