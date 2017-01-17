@@ -1,0 +1,151 @@
+package dodrugiegokolokwium;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class DoDrugiegoKolokwium {
+
+    public static void main(String[] args) throws IOException {
+        ZadanieCzwarte();
+    }
+
+    public static void ZadaniePierwsze() {
+        Scanner sc = new Scanner(System.in);
+        String napis = sc.nextLine();
+        String napis_przeksztalcony;
+        napis_przeksztalcony = "";
+        int i;
+        for (i = napis.length() - 1; i >= 0; i--) {
+            if (napis.charAt(i) == 'A' || napis.charAt(i) == 'a') {
+
+            } else {
+                napis_przeksztalcony = napis_przeksztalcony + napis.charAt(i);
+            }
+
+        }
+        System.out.println(napis_przeksztalcony);
+        for (int j = 0; napis_przeksztalcony.length() - 1 >= j; j++) {
+            System.out.print(napis_przeksztalcony.charAt(j));
+            int l = (int) napis_przeksztalcony.charAt(j);
+            System.out.print(" --> ");
+            System.out.println(l);
+        }
+
+    }
+
+    public static void ZadanieDrugie() throws IOException {
+        Scanner sc = new Scanner(System.in);
+        String sciezka = sc.next();
+        File Ranking = new File(sciezka);
+        Scanner sc_Ranking = new Scanner(Ranking);
+        int liczba_znakow = sc_Ranking.nextInt();
+        int row = 0;
+        double dzialanie;
+        dzialanie = sc_Ranking.nextDouble();
+        for (int i = liczba_znakow - 2; i <= liczba_znakow - 2 && i >= 0; i--) {
+            if (row % 2 == 0) {
+                dzialanie = dzialanie + sc_Ranking.nextDouble();
+                row++;
+            } else {
+                dzialanie = dzialanie - sc_Ranking.nextDouble();
+                row++;
+            }
+        }
+        System.out.println(dzialanie);
+
+    }
+
+    public static void ZadanieTrzecie() throws IOException {
+        try {
+            File pliko = new File("output.txt");
+            pliko.createNewFile();
+            BufferedReader strum1 = new BufferedReader(new FileReader("input.txt"));
+            BufferedReader strum3 = new BufferedReader(new FileReader("input.txt"));
+            String liczba;
+            int i = 0;
+            int j = 0;
+            while ((liczba = strum1.readLine()) != null) {
+                j++;
+            }
+            int tab[] = new int[j];
+            while ((liczba = strum3.readLine()) != null) {
+                tab[i] = Integer.parseInt(liczba);
+                System.out.println(liczba);
+                i++;
+            }
+            strum1.close();
+            Arrays.sort(tab);
+            BufferedWriter strum2 = new BufferedWriter(new FileWriter("output.wyn"));
+            for (int a = 0; a < i; a++) {
+                strum2.write(Integer.toString(tab[a]));
+                strum2.newLine();
+            }
+            strum2.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+//    Napisz klasę Testowa posiadającą pola int liczba, string napis oraz konstruktor przypisujący int’owi 33 
+//    a do napisu wstawiający tekst „treść napisu“. Funkcja ma posiadać również zestaw funkcji do zapisania 
+//            nowych wartości zmiennym oraz ich odczytania. 
+    public static void ZadanieCzwarte() throws IOException {
+        int liczba;
+        String napis;
+        liczba = 33;
+        napis = "treść napisu";
+
+        int userChoice;
+        while (true) {
+            userChoice = menu();
+            switch (userChoice) {
+
+                case 1:
+                    System.out.println(napis);
+                    break;
+                case 2:
+                    System.out.println(liczba);
+                    break;
+                case 3:
+                    Scanner nap = new Scanner(System.in);
+                    napis = nap.nextLine();
+                    break;
+                case 4:
+                    Scanner input2 = new Scanner(System.in);
+                    liczba = input2.nextInt();
+                    case 5:
+                    System.out.println("\n" + "Żegnaj , zapraszamy ponownie!");
+                    System.exit(0);
+                default:
+                    System.out.println("\n" + "Wybrałeś zły numer, wybnierz jeszcze raz");
+            }
+        }
+    }
+
+    public static int menu() {
+
+        int selection;
+        Scanner input = new Scanner(System.in);
+        System.out.println();
+        System.out.println(
+                "\n" + "Witaj, wybierz co chcesz zrobić" + "\n"
+                + "-----------------------\n" + "\n"
+                + "1 - Odczytaj zmienną napis" + "\n" + "\n"
+                + "2 - Odczytaj zmienną liczba" + "\n" + "\n"
+                + "3 - Zmień wartość zmiennej napis" + "\n" + "\n"
+                + "4 - Zmień wartość zmiennej liczba" + "\n" + "\n");
+
+        selection = input.nextInt();
+        return selection;
+    }
+}
