@@ -1,0 +1,189 @@
+package kolokwium2;
+
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.util.Scanner;
+
+public class KOLOKWIUM2 {
+
+    public static void main(String[] args) throws IOException {
+        ZadaniePierwsze();
+    }
+static int liczba_znakow;
+static double dzialanie;
+static Scanner sc_Ranking;
+static String dz;
+static int row;
+static Scanner sc_Ranking2;
+    static    int max_suma;
+         static       double laczna_suma;
+    public static void ZadaniePierwsze() throws IOException {
+        //zadanie1.txt
+        try {
+            Scanner sc = new Scanner(System.in);
+            String sciezka = sc.next();
+            File Ranking = new File(sciezka);
+            sc_Ranking = new Scanner(Ranking);
+            sc_Ranking2 = new Scanner(Ranking);
+            dz = sc_Ranking2.next();
+            liczba_znakow = sc_Ranking.nextInt();
+            dz = sc_Ranking2.next();
+            max_suma = sc_Ranking.nextInt();
+            dz = sc_Ranking2.next();
+            laczna_suma = 0;
+            row = 0;
+            
+            dzialanie = sc_Ranking.nextDouble();
+            dz = sc_Ranking2.next();
+            
+            for(int i = 0; i<=liczba_znakow;i++){
+                            if(dz != null){
+                Dodawanie();
+            }
+            }
+
+            
+            
+
+
+
+            System.out.println(laczna_suma);
+        } catch (Exception e) {
+            boolean laczna_suma = true;
+            System.out.println(laczna_suma);
+        }
+
+    }
+    
+    public static void Dodawanie(){
+        dzialanie = 0;
+                    for (int i = liczba_znakow - 2; i <= liczba_znakow - 2 && i >= 0; i--) {
+
+                dzialanie = dzialanie + sc_Ranking.nextDouble();
+                dz = sc_Ranking2.next();
+                row++;
+
+            }
+
+            
+            if (max_suma >= (int) dzialanie) {
+                laczna_suma = laczna_suma + dzialanie;
+
+            }
+    }
+
+    public static void ZadanieDrugie() throws IOException {
+        Testowa ob;
+        ob = new Testowa();
+        ob.Dodzieła();
+
+    }
+    
+    
+static String tekst = "";
+  static  String tekst_przetworzony = "";
+ static String sciezka_zad3;
+    public static void ZadanieTrzecie() throws IOException {
+        Scanner sc = new Scanner(System.in);
+        sciezka_zad3 = sc.nextLine();
+        
+        for (int i = 0; i <= sciezka_zad3.length() - 1; i++) {
+            if (sciezka_zad3.charAt(i) == 'a' || sciezka_zad3.charAt(i) == 'b' || sciezka_zad3.charAt(i) == 'c') {
+                tekst = tekst + sciezka_zad3.charAt(i);
+            }
+            
+            
+        }
+        Zad_A();
+            Zad_B();
+            Zad_C();
+System.out.println(tekst_przetworzony);
+    }
+    public static void Zad_A(){
+                for (int i = 0; i <= tekst.length() - 1; i++) {
+                    if((i+1)<=tekst.length() - 1){
+                        if (sciezka_zad3.charAt(i) == 'a' && sciezka_zad3.charAt(i+1) == 'a') {
+                tekst_przetworzony = tekst_przetworzony + sciezka_zad3.charAt(i);
+                i++;
+            }
+            else if(sciezka_zad3.charAt(i) == 'a' && sciezka_zad3.charAt(i+1) != 'a'){
+                
+            }
+                    }
+                    else{
+                        if(sciezka_zad3.charAt(i) == 'a'){
+                
+            }
+                    }
+            
+        }
+    }
+  public static void Zad_B(){
+                for (int i = 0; i <= tekst.length() - 1; i++) {
+                    if((i+1)<=tekst.length() - 1){
+                        if (sciezka_zad3.charAt(i) == 'b' && sciezka_zad3.charAt(i+1) == 'b') {
+                tekst_przetworzony = tekst_przetworzony + sciezka_zad3.charAt(i) + sciezka_zad3.charAt(i) + sciezka_zad3.charAt(i);
+                i++;
+            }
+            else if(sciezka_zad3.charAt(i) == 'b' && sciezka_zad3.charAt(i+1) != 'b'){
+                tekst_przetworzony = tekst_przetworzony + sciezka_zad3.charAt(i);
+            }
+                    }
+                    else {
+                        if(sciezka_zad3.charAt(i) == 'b'){
+                tekst_przetworzony = tekst_przetworzony + sciezka_zad3.charAt(i);
+            }
+                    }
+            
+        }
+    }
+      public static void Zad_C(){
+                for (int i = 0; i <= tekst.length() - 1; i++) {
+                    if((i+1)<=tekst.length() - 1){
+                        if (sciezka_zad3.charAt(i) == 'c' && sciezka_zad3.charAt(i+1) == 'c') {
+                tekst_przetworzony = tekst_przetworzony + "ba";
+                i++;
+            }
+            else if(sciezka_zad3.charAt(i) == 'c' && sciezka_zad3.charAt(i+1) != 'c'){
+                tekst_przetworzony = tekst_przetworzony + "ab";
+            }
+                    }
+                    else{
+                        if(sciezka_zad3.charAt(i) == 'c' ){
+                tekst_przetworzony = tekst_przetworzony + "ab";
+            }
+                    }
+            
+        }
+    }
+    
+      public static void ZadanieCzwarte() throws IOException {
+       Scanner sc = new Scanner(System.in);
+            String sciezka_zad4 = sc.next();
+            int liczba_k = 0;
+            int ilosc = sciezka_zad4.length();
+            if(ilosc % 4 == 0){
+                liczba_k = ilosc/4;
+            }
+            else if (ilosc % 4 == 1){
+                liczba_k = (ilosc+1)/4;
+            }
+            else if (ilosc % 4 == 2){
+                liczba_k = (ilosc+2)/4;
+            }
+            else if (ilosc % 4 == 3){
+                liczba_k = (ilosc+3)/4;
+            }
+            char tab[] = new char[liczba_k];
+            for(int i=0 ; i<= tab.length-1;i++){
+                char p = sciezka_zad4.charAt(i);
+                tab[i] = {p};
+            }
+            
+            System.out.println(liczba_k);
+    }
+      
+      
+}
