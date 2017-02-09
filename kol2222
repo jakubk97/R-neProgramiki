@@ -21,10 +21,11 @@ public class Organizer2 {
 
     
     public static void main(String[] args) throws IOException {
-//        wolne();
+        wolne();
 //        rezerwuj(10,"1305", "1605");
 //        wyswietl();
-        wczytaj("plik.bin");
+        rezerwuj(1, "00:00", "01:15");
+        wyswietl();
         
 //        wolne();
 //        rezerwuj(10,"1305", "1605");
@@ -76,8 +77,8 @@ public class Organizer2 {
     public static int Przeliczeni(String godzina) throws IOException {
         int jed = godzina.charAt(0) - '0';
         int dwa = godzina.charAt(1) - '0';
-        int trz = godzina.charAt(2) - '0';
-        int czt = godzina.charAt(3) - '0';
+        int trz = godzina.charAt(3) - '0';
+        int czt = godzina.charAt(4) - '0';
         int godziny = (jed * 10 + dwa) * 12;
         int minuty = (trz * 10 + czt) / 5 + 1;
         int wynik = godziny + minuty;
@@ -85,8 +86,8 @@ public class Organizer2 {
     }
     public static void wolne() throws IOException {
         
-        String startowa = "0000";
-        String koniec = "2400";
+        String startowa = "00:00";
+        String koniec = "24:00";
         int start_naint = Przeliczeni(startowa);
         int end_naint = Przeliczeni(koniec);
         for(int j = 0 ; j<31 ; j++){
@@ -163,8 +164,8 @@ public class Organizer2 {
      public static void wyswietl() throws IOException {
          
          
-        String startowa = "0000";
-        String koniec = "2400";
+        String startowa = "00:00";
+        String koniec = "24:00";
         int start_naint = Przeliczeni(startowa);
         int end_naint = Przeliczeni(koniec);
         for(int j = 0 ; j<31 ; j++){
@@ -184,15 +185,7 @@ public class Organizer2 {
         Scanner scan;
         File file = new File(NazwaPliku);
         scan = new Scanner(file);
-       // BufferedReader br = new BufferedReader(new FileReader(NazwaPliku));
-        
-//        DataInputStream dis = new DataInputStream(
-//                new FileInputStream(file));
-//        line = dis.readDouble();
-//        System.out.println("Wynik: " + line);
-//       String linea = br.readLine();
-//       System.out.println("Wynik: " + linea);
-       
+
         while (scan.hasNextLine()) {
             line = scan.nextLine();
              System.out.println(line);
@@ -205,8 +198,8 @@ public class Organizer2 {
          File plik1 = new File(NazwaPliku+".bin");
         BufferedWriter bw = new BufferedWriter(new FileWriter(plik1, true));
         
-        String startowa = "0000";
-        String koniec = "2400";
+        String startowa = "00:00";
+        String koniec = "24:00";
         int start_naint = Przeliczeni(startowa);
         int end_naint = Przeliczeni(koniec);
         for(int j = 0 ; j<31 ; j++){
