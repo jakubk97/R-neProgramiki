@@ -1,0 +1,189 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package organizer2;
+
+import java.io.IOException;
+import java.util.Scanner;
+
+/**
+ *
+ * @author Kuba
+ */
+public class Organizer2 {
+
+    
+    public static void main(String[] args) throws IOException {
+//        wolne();
+//        rezerwuj(10,"1305", "1605");
+//        wyswietl();
+//        wolne();
+//        rezerwuj(10,"1305", "1605");
+    }
+    
+
+
+
+
+
+    private static char [][] Kalendarz = new char [31][289];
+    private static String imieNazwisko;
+    private static String nazwaMiesiaca;
+    
+    char[][] getKalendarz() {
+        return Kalendarz;
+    }
+
+    
+    public static void ZadaniePierwsze() throws IOException {
+        
+         Scanner sc = new Scanner(System.in);
+         String wyjsciowy = "";
+         char znak ;
+         System.out.println("Podaj imie i nazwisko: ");
+         String imieNazwisko = sc.nextLine();
+         for(int i = 0; i<imieNazwisko.length();i++){
+             if (i == 0 && imieNazwisko.charAt(i) >= 'a' && imieNazwisko.charAt(i) <= 'z'){
+                  znak = (char)(imieNazwisko.charAt(0) - 32);
+                 wyjsciowy += znak;
+             }
+             else if (imieNazwisko.charAt(i) == ' ' ){
+                  znak = ' ';
+                 wyjsciowy += znak;
+                 znak = (char)(imieNazwisko.charAt(i+1) - 32);
+                 wyjsciowy += znak;
+                 i++;
+             }
+             else {
+                  znak = (char)(imieNazwisko.charAt(i));
+                 wyjsciowy += znak;
+             }
+         }
+         Organizer2.imieNazwisko = wyjsciowy;
+        
+
+    }
+    
+    public static int Przeliczeni(String godzina) throws IOException {
+        int jed = godzina.charAt(0) - '0';
+        int dwa = godzina.charAt(1) - '0';
+        int trz = godzina.charAt(2) - '0';
+        int czt = godzina.charAt(3) - '0';
+        int godziny = (jed * 10 + dwa) * 12;
+        int minuty = (trz * 10 + czt) / 5 + 1;
+        int wynik = godziny + minuty;
+        return wynik;
+    }
+    public static void wolne() throws IOException {
+        
+        String startowa = "0000";
+        String koniec = "2400";
+        int start_naint = Przeliczeni(startowa);
+        int end_naint = Przeliczeni(koniec);
+        for(int j = 0 ; j<31 ; j++){
+            for (int i = start_naint ; i<=end_naint-1 ; i++){
+            char znak = Organizer2.Kalendarz[j][i];
+            Organizer2.Kalendarz[j][i] = 'w';
+            
+        }
+        }
+      
+    }
+    
+    public static boolean rezerwuj(int dzien,String start, String end) throws IOException {
+        
+        String startowa = start;
+        String koniec = end;
+        int start_naint = Przeliczeni(startowa);
+        int end_naint = Przeliczeni(koniec);
+        for (int i = start_naint ; i<=end_naint ; i++){
+            char znak = Organizer2.Kalendarz[dzien][i];
+            if(znak != 'w'){
+                 return false;
+            }
+            
+        }
+        for (int i = start_naint ; i<=end_naint ; i++){
+                Organizer2.Kalendarz[dzien][i] = 'r';
+                
+        }
+        return true;
+      
+    }
+    
+     public static boolean zablokuj(int dzien,String start, String end) throws IOException {
+          String startowa = start;
+        String koniec = end;
+        int start_naint = Przeliczeni(startowa);
+        int end_naint = Przeliczeni(koniec);
+        for (int i = start_naint ; i<=end_naint ; i++){
+            char znak = Organizer2.Kalendarz[dzien][i];
+            if(znak != 'w'){
+                 return false;
+            }
+            
+        }
+        for (int i = start_naint ; i<=end_naint ; i++){
+                Organizer2.Kalendarz[dzien][i] = 'z';
+                
+        }
+        return true;
+      
+    }
+     
+     public static boolean zwolnij(int dzien,String start, String end) throws IOException {
+        
+          String startowa = start;
+        String koniec = end;
+        int start_naint = Przeliczeni(startowa);
+        int end_naint = Przeliczeni(koniec);
+        for (int i = start_naint ; i<=end_naint ; i++){
+            char znak = Organizer2.Kalendarz[dzien][i];
+            if(znak != 'w'){
+                 return false;
+            }
+            
+        }
+        for (int i = start_naint ; i<=end_naint ; i++){
+                Organizer2.Kalendarz[dzien][i] = 'w';
+                
+        }
+        return true;
+      
+    }
+     public static void wyswietl() throws IOException {
+         
+         
+        String startowa = "0000";
+        String koniec = "2400";
+        int start_naint = Przeliczeni(startowa);
+        int end_naint = Przeliczeni(koniec);
+        for(int j = 0 ; j<31 ; j++){
+            System.out.println("Dzień : " + (j));
+            for (int i = start_naint ; i<=end_naint-1 ; i++){
+            char znak = Organizer2.Kalendarz[j][i];
+            System.out.println(znak);
+        }
+        }
+        
+      
+    }
+    
+    public static void wczytaj(String NazwaPliku) throws IOException {
+         
+//         
+//         for (int i = 0; i < Kalendarz.length; i++) {
+//             System.out.print(Kalendarz[i][0]);
+//             for (int j = 1; j < Kalendarz[i].length; j++) {
+//                 System.out.print(Kalendarz[i][j]);
+//             }
+//             System.out.println();
+//         }
+        
+      
+    }
+
+}
+
