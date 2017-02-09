@@ -5,6 +5,11 @@
  */
 package organizer2;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -19,6 +24,8 @@ public class Organizer2 {
 //        wolne();
 //        rezerwuj(10,"1305", "1605");
 //        wyswietl();
+        wczytaj("plik.bin");
+        
 //        wolne();
 //        rezerwuj(10,"1305", "1605");
     }
@@ -161,6 +168,7 @@ public class Organizer2 {
         int start_naint = Przeliczeni(startowa);
         int end_naint = Przeliczeni(koniec);
         for(int j = 0 ; j<31 ; j++){
+            System.out.println();
             System.out.println("Dzień : " + (j));
             for (int i = start_naint ; i<=end_naint-1 ; i++){
             char znak = Organizer2.Kalendarz[j][i];
@@ -172,15 +180,47 @@ public class Organizer2 {
     }
     
     public static void wczytaj(String NazwaPliku) throws IOException {
-         
-//         
-//         for (int i = 0; i < Kalendarz.length; i++) {
-//             System.out.print(Kalendarz[i][0]);
-//             for (int j = 1; j < Kalendarz[i].length; j++) {
-//                 System.out.print(Kalendarz[i][j]);
-//             }
-//             System.out.println();
-//         }
+         String line;
+        Scanner scan;
+        File file = new File(NazwaPliku);
+        scan = new Scanner(file);
+       // BufferedReader br = new BufferedReader(new FileReader(NazwaPliku));
+        
+//        DataInputStream dis = new DataInputStream(
+//                new FileInputStream(file));
+//        line = dis.readDouble();
+//        System.out.println("Wynik: " + line);
+//       String linea = br.readLine();
+//       System.out.println("Wynik: " + linea);
+       
+        while (scan.hasNextLine()) {
+            line = scan.nextLine();
+             System.out.println(line);
+        }
+        
+      
+    }
+    
+    public static void zapisz(String NazwaPliku) throws IOException {
+         File plik1 = new File(NazwaPliku+".bin");
+        BufferedWriter bw = new BufferedWriter(new FileWriter(plik1, true));
+        
+        String startowa = "0000";
+        String koniec = "2400";
+        int start_naint = Przeliczeni(startowa);
+        int end_naint = Przeliczeni(koniec);
+        for(int j = 0 ; j<31 ; j++){
+            //System.out.println("Dzień : " + (j));
+            bw.newLine();
+            bw.write("Dzień : " + (j));
+            for (int i = start_naint ; i<=end_naint-1 ; i++){
+            char znak = Organizer2.Kalendarz[j][i];
+            bw.newLine();
+            bw.write(znak);
+        }
+        }
+        bw.close();
+        
         
       
     }
